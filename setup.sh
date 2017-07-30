@@ -1,6 +1,8 @@
 #!/bin/sh
-ln -sh $PWD/.inputrc ~/.inputrc
+ln -shf $PWD/.bash_profile ~/.bash_profile
+ln -shf $PWD/.bashrc ~/.bashrc
+ln -shf $PWD/.inputrc ~/.inputrc
 
-ln -sh $PWD/.vimrc ~/.vimrc
-ln -sh $PWD/.vimrc_local ~/.vimrc_local
+ln -shf $PWD/.vimrc ~/.vimrc
+ln -shf $PWD/.vimrc_local ~/.vimrc_local
 
