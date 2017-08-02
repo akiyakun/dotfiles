@@ -1,0 +1,34 @@
+#!/bin/sh
+
+PATH_TOP=$XBIN_VAR/path_top
+PATH_LIST=$XBIN_VAR/path_list
+
+case $1 in
+clear)
+    echo "clear"
+    > $PATH_TOP
+    > $PATH_LIST
+    ;;
+top)
+    echo $(cat $PATH_TOP)
+    ;;
+list)
+    echo $(cat $PATH_LIST)
+    ;;
+push)
+	echo $2 | tr '\n' ' ' > $PATH_TOP
+	cat $PATH_TOP >> $PATH_LIST
+	;;
+*)
+    echo "hoge"
+    ;;
+esac
+
+##############################
+# win
+#if [ "$PLATFORM" = "win" ]; then
+#export PATH="$PATH:/usr/local/bin:/bin:/mingw64/bin:/X/opt/svn/bin:/x/usr/local/bin"
+#alias ls='ls --show-control-chars'
+#alias la='ls -a --show-control-chars'
+#alias lal='ls -alh --show-control-chars'
+#fi

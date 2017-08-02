@@ -1,0 +1,12 @@
+#!/bin/sh
+# 開発用ディレクトリのパスを設定
+# echo $(dirname $0)
+
+if [ $# -eq 0 ]; then 
+    echo $(dirname $0) > ~/xbin/temp/dev_work_dir
+else
+    echo $1 > ~/xbin/temp/dev_work_dir
+fi
+
+cat ~/xbin/temp/dev_work_dir
+

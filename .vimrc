@@ -23,20 +23,36 @@ let s:dein_plugin_dir = expand('~/.vim/dein/plugin')
 "set runtimepath+=s:dein_dir
 execute 'set runtimepath^=' . s:dein_dir
 
+"let g:vim_jsx_pretty_enable_jsx_highlight = 0
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
+
 if dein#load_state(s:dein_plugin_dir)
     call dein#begin(s:dein_plugin_dir)
 
+    " プラグインを変更したらvimから下のコマンドを実行
+    " :call dein#install()
+
     call dein#add(s:dein_dir)
     call dein#add('Shougo/neocomplete.vim')
+
     call dein#add('altercation/vim-colors-solarized')
+
+    " Editor
+    call dein#add('sgur/vim-editorconfig')
+    call dein#add('tyru/caw.vim')
 
     " Syntax files
     call dein#add('ekalinin/Dockerfile.vim')
+    " js React JSX
+    "call dein#add('othree/yajs.vim')
+    call dein#add('pangloss/vim-javascript')
+    call dein#add('maxmellon/vim-jsx-pretty')
+    "call dein#add('othree/javascript-libraries-syntax.vim')
+    "call dein#add('othree/es.next.syntax.vim')
 
     call dein#end()
     call dein#save_state()
 endif
-
 
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
@@ -56,7 +72,8 @@ set autochdir                           " カレントディレクトリを開�
 "----------------------------
 " 一般
 set history=50                          " コマンド、検索パターンの履歴保存数
-set t_Co=256                            " 256色化
+"set t_Co=256                            " 256色化
+set t_Co=16                            " 256色化
 set nowrap                              " テキストの折り返しはしない
 set shortmess+=I                        " 起動時のメッセージを表示しない
 set visualbell t_vb=                    " ビープ音もフラッシュもしない
@@ -102,7 +119,7 @@ set tags=./.tags;,./tags;               " タグファイルを親ディレク�
 "----------------------------
 " 装飾
 set number                              " 行番号を表示
-set cursorline                          " カーソル行を強調表示する
+"set cursorline                          " カーソル行を強調表示する
 set notitle                             " タイトルを表示しない
 set ruler                               " カーソルが何行目の何列目に置かれているかを表示する
 set showcmd                             " 入力中のコマンドをステータスに表示する
@@ -115,16 +132,17 @@ set cmdheight=1                         " コマンドラインの高さ
 
 "----------------------------
 " フォント
-set guifont=Consolas:h13
-set guifontwide=MeiryoKe_Console:h12
-set linespace=2                         " 行間の指定
+"set guifont=Consolas:h13
+"set guifontwide=MeiryoKe_Console:h12
+"set linespace=2                         " 行間の指定
 
 "----------------------------
 " シンタックスハイライト
-if &t_Co > 2 || has('gui_running')
+"if &t_Co > 2 || has('gui_running')
+"let hoge = confirm("gui", "y")
     syntax enable                       " シンタックスハイライトを有効にする
     set hlsearch                        " 検索文字列をハイライトする
-endif
+"endif
 
 set background=dark
 
@@ -137,8 +155,8 @@ set mousehide                           " 入力時にマウスポインタを�
 
 
 "----------------------------
-" 環境依存
-"if filereadable(expand($HOME.'/.vimrc_local'))
-"    source $HOME/.vimrc_local
-"endif
-"
+" ローカル設定
+if filereadable(expand($HOME.'/.vimrc_local'))
+    source $HOME/.vimrc_local
+endif
+

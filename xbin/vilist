@@ -1,0 +1,2 @@
+#!/bin/sh
+vi $(cat ~/xbin/temp/path_list)
