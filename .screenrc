@@ -1,0 +1,98 @@
+# .screenrc
+
+bind v eval 'echo v0.26'
+
+#################################################
+# 
+
+# Encoding
+defkanji utf8              # 古いScreen用のettei
+defutf8 on
+defencoding utf8
+encoding utf8 utf8
+
+startup_message off         # 起動時のメッセージを非表示
+autodetach on               # ターミナルが落ちたら自動的にデタッチ
+vbell off                   # ベルをオフ
+defscrollback 3000          # スクロールバッファ
+# altscreen on
+# bell_msg "^G"
+# log on
+
+# VimでEscの反応が遅いのを対処
+maptimeout 0
+
+# Ctrl+tがscreenでターミナルを開いているときのエスケープキーになります。
+# 例えば、screenの画面の切り替え(トグル）は、Ctrl+t、Ctrl+tと2回入力になります。
+# escape ^Th
+escape ^Tt
+# escape ^Ss
+
+# .screenrc をリロード
+bind r eval 'source ~/.screenrc' 'echo "reloaded .screenrc"'
+
+# bind q eval 'exit'
+
+# 封印
+bind x eval 'echo ignre'
+# bind c command
+
+
+#################################################
+# ウィンドウ操作モード
+bind t eval 'command -c cmd01' 'echo "Operate window"'
+
+# ウィンドウ名を変更
+bind -c cmd01 a eval 'title'
+
+# 縦分割後フォーカスを移動してプロセスを作成
+bind -c cmd01 | eval 'split -v' 'focus next' 'screen -X screen' 'command -c cmd01'
+bind -c cmd01 \¥¥ eval 'command -c cmd01' 'echo bs' # 誤入力防止
+
+# 横分割後フォーカスを移動してプロセスを作成
+bind -c cmd01 s eval 'split -h' 'focus next' 'screen -X screen' 'command -c cmd01'
+bind -c cmd01 S eval 'command -c cmd01' # 誤入力防止
+
+bind -c cmd01 q eval 'only'     # 画面分割をやめる
+# bind -c cmd01 x eval 'remove' 'command -c cmd01'    # ウィンドウを削除
+bind -c cmd01 x eval 'remove' 'focus next' 'command -c cmd01'    # ウィンドウを削除、フォーカスを次のウィンドウへ
+
+# フォーカス移動
+bind -c cmd01 t eval 'focus top'
+bind -c cmd01 b eval 'focus bottom'
+bind -c cmd01 n eval 'focus next'
+bind -c cmd01 p eval 'focus prev'
+bind -c cmd01 j eval 'focus down' 'command -c cmd01'
+bind -c cmd01 k eval 'focus up' 'command -c cmd01'
+bind -c cmd01 h eval 'focus left' 'command -c cmd01'
+bind -c cmd01 l eval 'focus right' 'command -c cmd01'
+
+# リサイズ
+bind -c cmd01 + eval 'resize +1' 'command -c cmd01'
+bind -c cmd01 - eval 'resize -1' 'command -c cmd01'
+bind -c cmd01 = eval 'command -c cmd01' # 誤入力防止
+bind -c cmd01 _ eval 'command -c cmd01' # 誤入力防止
+
+#################################################
+# Test
+bind h eval 'command -c cmd02' 'echo "Test Mode"'
+
+# 無理やり自動分itemiruしてみる
+bind -c cmd02 g eval 'select 1' 'split -v' 'focus next' 'select 2' 'split -h' 'focus next' 'select 3'
+
+bind -c cmd02 G eval 'title "bash"' 'split -v' 'focus next' 'screen -X screen' 'title "work1"' 'screen -X screen' 'title "work2"' 'split -h' 'focus next' 'screen -X screen' 'title "docker"'
+
+#################################################
+# UnderBar
+# 1. シンプルにウィンドウ名を表示 
+  # caption always "%{= wk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wb}%y/%m/%d(%D) %{=b wb}%c"
+# 2. カレントを赤色、それ以外を青色にする
+  # Under Bar Style
+  hardstatus alwayslastline "%H[%n] [%w]"
+  termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+  shelltitle "$ |bash"
+  # active screen is red(rw)
+  # non active screen are blue(bw)
+  caption always "%?%F%{= rw}%:%{= bw}%?%H %-w%?%F%{=bu dc}%:%{=bu dc}%?%n %t%{-}%+w"
+
+

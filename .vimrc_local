@@ -1,78 +1,9 @@
-
-"----------------------------
-" フォント
-"set guifont=Osaka:h18
-"set guifontwide=Osaka:h18
-"set linespace=2                         " 行間の指定
-
-let g:solarized_contrast="high"
-"let g:solarized_visibility="high"
-
-let g:solarized_termcolors=16
-"let g:solarized_termcolors=256
-let g:solarized_italic=0
-colorscheme solarized
-
-" caw.vim
-" nmap <Leader>c <Plug>(caw:i:toggle)
-" vmap <Leader>c <Plug>(caw:i:toggle)
-
-
-"----------------------------
-" key remap
-inoremap <C-F> <Right>
-inoremap <C-B> <Left>
-
-
-"----------------------------
-" win32
-if has('win32')
-	if has('gui_running')
-		" GUI
-		set guioptions-=m
-		set guioptions-=T
-		set columns=181		" ウィンドウの幅
-		set lines=41		" ウィンドウの高さ
-		winpos 54 135		" ウィンドウの位置
-	endif
-endif
-
-"----------------------------
-" win32unix
-if has('win32unix')
-	" カーソルを変更
-	let &t_ti.="\e[1 q"
-	let &t_SI.="\e[5 q"
-	let &t_EI.="\e[1 q"
-	let &t_te.="\e[0 q"
-endif
-
-"----------------------------
-" mac
-" MEMO: macOSのターミナルはunixになります。
+" mac .vimrc_local
 if has('mac')
+    " echo 'mac'
 endif
 
-"----------------------------
-" unix
-"let a1 = confirm(system("uname"), "y")
 if has('unix')
-    " let hoge = confirm("unix", "y")
-
-	" カーソルを変更
-    let &t_SI .= "\e[5 q"  " 挿入モード開始(バー型のカーソル)
-    let &t_EI .= "\e[1 q"  " 挿入モード終了(ブロック型カーソル)
-    let &t_ti .= "\e[1 q"  " 端末を termcap モードにする
-    let &t_te .= "\e[0 q"  " termcap モードから抜ける
-
-    " ESCを押した後の待ちを無くす
-    " let &t_SI .= "\e[?7727h"
-    " let &t_EI .= "\e[?7727l"
-    " inoremap <special> <Esc>O[ <Esc>
-    "
-    " let &t_ti .= "\e[?7727h"
-    " let &t_te .= "\e[?7727l"
-    " noremap <special> <Esc>O[ <Esc>
-    " noremap! <special> <Esc>O[ <Esc>
+    " echo 'unix'
 endif
 

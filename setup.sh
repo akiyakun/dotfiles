@@ -4,6 +4,7 @@
 ln -shf $PWD/.bash_profile ~/.bash_profile
 ln -shf $PWD/.bashrc ~/.bashrc
 ln -shf $PWD/.inputrc ~/.inputrc
+ln -shf $PWD/.screenrc ~/.screenrc
 
 # Vim
 ln -shf $PWD/.vimrc ~/.vimrc

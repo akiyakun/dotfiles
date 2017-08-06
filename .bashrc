@@ -1,37 +1,6 @@
 # .bashrc
 
 ##############################
-# PATH
-#export PATH=$PATH:~/xbin
-
-# xbin
-. ~/xbin/.xbinrc
-
-##############################
-# Alias
-alias ..='cd ..'
-alias la='ls -a'
-alias lal='ls -alh'
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
-alias vi='vim'
-
-# git
-alias gs='git status -s'
-
-# docker
-alias dk='docker'
-alias dkps='docker ps -a'
-
-##############################
-# case $TERM in
-#   linux) LANG=C ;;
-#   *) LANG=ja_JP.UTF-8 ;;
-# esac
-
-##############################
 # Platforms
 case "$OSTYPE" in
 msys*)
@@ -51,6 +20,51 @@ linux*)
     ;;
 esac
 
+
+##############################
+# PATH
+#export PATH=$PATH:~/xbin
+
+# xbin
+. ~/xbin/.xbinrc
+
+
+##############################
+# Alias
+alias ..='cd ..'
+alias la='ls -a'
+alias lal='ls -alh'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+# Screen
+alias screen-clean='screen -ls | grep Detached | awk "{ print $1}"| xargs -L 1 -I % screen -S % -X quit'
+
+# vi
+alias vi='vim'
+
+# git
+alias gs='git status -s'
+
+# docker
+alias dk='docker'
+alias dkps='docker ps -a'
+
+
+##############################
+# Terminal
+export PS1="/\W $ "
+
+# case $TERM in
+#   linux) LANG=C ;;
+#   *) LANG=ja_JP.UTF-8 ;;
+# esac
+
+# Mac?
+export LANG=ja_JP.UTF-8
+
+
 ##############################
 # win
 if [ "$PLATFORM" = "win" ]; then
@@ -59,6 +73,7 @@ alias ls='ls --show-control-chars'
 alias la='ls -a --show-control-chars'
 alias lal='ls -alh --show-control-chars'
 fi
+
 
 ##############################
 # mac
@@ -69,6 +84,7 @@ alias la='ls -a -G'
 alias lal='ls -alh -G'
 fi
 
+
 ##############################
 # linux
 if [ "$PLATFORM" = "linux" ]; then
@@ -76,4 +92,5 @@ alias ls='ls --color=auto'
 alias la='ls -a --color=auto'
 alias lak='ls -alh --color=auto'
 fi
+
 
