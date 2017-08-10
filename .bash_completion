@@ -1,0 +1,9 @@
+
+DIR=~/xetc/completions
+
+. ${DIR}/path
+
+. ${DIR}/git-completion.bash
+. ${DIR}/git-prompt.sh
+
+

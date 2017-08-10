@@ -1,12 +1,12 @@
 # .screenrc
 
-bind v eval 'echo v0.26'
+bind v eval 'echo v0.28'
 
 #################################################
 # 
 
 # Encoding
-defkanji utf8              # 古いScreen用のettei
+defkanji utf8               # 古いScreen用のettei
 defutf8 on
 defencoding utf8
 encoding utf8 utf8
@@ -32,6 +32,11 @@ escape ^Tt
 bind r eval 'source ~/.screenrc' 'echo "reloaded .screenrc"'
 
 # bind q eval 'exit'
+
+# コピーモード
+# bindkey -m <key><command>
+
+# bind <key> 'exec /bin/sh -c "shell cmd"'
 
 # 封印
 bind x eval 'echo ignre'
@@ -77,10 +82,10 @@ bind -c cmd01 _ eval 'command -c cmd01' # 誤入力防止
 # Test
 bind h eval 'command -c cmd02' 'echo "Test Mode"'
 
-# 無理やり自動分itemiruしてみる
-bind -c cmd02 g eval 'select 1' 'split -v' 'focus next' 'select 2' 'split -h' 'focus next' 'select 3'
+# 無理やり自動分割してみる
+bind -c cmd02 g eval 'title "bash"' 'split -v' 'focus next' 'screen -X screen -t "work1"' 'screen -X screen -t "work2"' 'split -h' 'focus next' 'screen -X screen -t "top"'
+bind -c cmd02 G eval 'select 1' 'split -v' 'focus next' 'select 2' 'split -h' 'focus next' 'select 3'
 
-bind -c cmd02 G eval 'title "bash"' 'split -v' 'focus next' 'screen -X screen' 'title "work1"' 'screen -X screen' 'title "work2"' 'split -h' 'focus next' 'screen -X screen' 'title "docker"'
 
 #################################################
 # UnderBar

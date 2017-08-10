@@ -1,9 +1,0 @@
-
-hoge
-/Users/akiya/dev/SrawOknayn
-hoge
-/Users/akiya/dev/SrawOknayn/Assets/SrawOknayn/Scripts/Sound/AudioClips.cs
-hoge
-0
-hoge
-/Users/akiya/dev/SrawOknayn /Users/akiya/dev/SrawOknayn/Assets/SrawOknayn/Scripts/Sound/AudioClipManager.cs 0

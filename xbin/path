@@ -1,34 +1,98 @@
 #!/bin/sh
 
-PATH_TOP=$XBIN_VAR/path_top
-PATH_LIST=$XBIN_VAR/path_list
+VERSION="v0.01"
+
+_help () {
+  echo "$ path [option] path"
+  echo "  set [name]"
+  echo "    パスを設定します。"
+  echo "  get [name]"
+  echo "    パスを取得します。"
+  echo "  cd [name]"
+  echo "    カレントディレクトリを移動します。"
+  echo "    usage: $ . path cd dev"
+  echo "  rm [name]"
+  echo "    パスを削除します。"
+  echo "  clear"
+  echo "    全てのパスを削除します。"
+  echo "  --version"
+  echo "    現在のバージョン。"
+}
+
+line_dir=~/xvar/path/line
+# list_dir=~/xvar/path/list
+
+_to_line () {
+ 	echo $1 | tr '\n' ' '
+}
+
+# _set
+# $1  名前
+# $2  パス
+_set () {
+  local out=$line_dir/$1
+
+  if [ "$2" = "." ]; then
+	  _to_line $PWD > $out
+  else
+    _to_line $2 > $out
+  fi
+
+  echo $(cat $out)
+}
+
+# _get
+# $1  名前
+_get () {
+  echo $(cat $line_dir/$1)
+}
+
 
 case $1 in
+ls)
+  echo $(ls $line_dir/)
+  ;;
+set)
+  if [ $# -eq 3 ]; then
+    _set $2 $3
+  fi
+  ;;
+get)
+  if [ $# -eq 2 ]; then
+    _get $2
+  fi
+  ;;
+cd)
+  if [ $# -eq 2 ]; then
+    cd $(cat $line_dir/$2)
+  fi
+  ;;
+rm)
+  # > file
+  rm $line_dir/$2
+  # rm $list_dir/$2
+  ;;
+
 clear)
-    echo "clear"
-    > $PATH_TOP
-    > $PATH_LIST
-    ;;
-top)
-    echo $(cat $PATH_TOP)
-    ;;
-list)
-    echo $(cat $PATH_LIST)
-    ;;
-push)
-	echo $2 | tr '\n' ' ' > $PATH_TOP
-	cat $PATH_TOP >> $PATH_LIST
-	;;
-*)
-    echo "hoge"
-    ;;
+  rm $line_dir/*
+  rm $list_dir/*
+  ;;
+
+
+# top)
+#     echo $(cat $PATH_TOP)
+#     ;;
+# list)
+#     echo $(cat $PATH_LIST)
+#     ;;
+# push)
+# 	echo $2 | tr '\n' ' ' > $PATH_TOP
+# 	cat $PATH_TOP >> $PATH_LIST
+# 	;;
+
+--version) echo $VERSION ;;
+-h) _help ;;
+--help) _help ;;
+*) _help ;;
 esac
 
-##############################
-# win
-#if [ "$PLATFORM" = "win" ]; then
-#export PATH="$PATH:/usr/local/bin:/bin:/mingw64/bin:/X/opt/svn/bin:/x/usr/local/bin"
-#alias ls='ls --show-control-chars'
-#alias la='ls -a --show-control-chars'
-#alias lal='ls -alh --show-control-chars'
-#fi

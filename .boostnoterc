@@ -1,0 +1,45 @@
+{
+  "ui": {
+    "theme": "default"
+  },
+  "editor": {
+    "theme": "solarized"
+  },
+  "preview": {
+    "codeblocktheme": "solarized",
+  },
+  "zoom": 0.8,
+
+  "sample": {
+  "editor": {
+    "fontFamily": "Monaco, Consolas",
+      "fontSize": "14",
+      "indentSize": "2",
+      "indentType": "space",
+      "keyMap": "vim",
+      "switchPreview": "BLUR",
+      "theme": "monokai"
+  },
+  "hotkey": {
+      "toggleFinder": "Cmd + Alt + S",
+      "toggleMain": "Cmd + Alt + L"
+  },
+  "isSideNavFolded": false,
+  "listStyle": "DEFAULT",
+  "listWidth": 174,
+  "navWidth": 200,
+  "preview": {
+      "codeblocktheme": "dracula",
+      "fontfamily": "lato",
+      "fontsize": "14",
+      "linenumber": true
+  },
+  "sortBy": "UPDATED_AT",
+  "ui": {
+      "defaultNote": "ALWAYS_ASK",
+      "disableDirectWrite": false,
+      "theme": "default"
+  },
+  "zoom": 1
+  }
+}

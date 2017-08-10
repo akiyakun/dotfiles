@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# 補完リスト
+# COMPREPLY
+#
+# 今カーソルがあるワードは何語目か
+# COMP_CWORD
+#
+# コマンドラインのワードのリスト
+# COM_WORDS
+#
+
+# compgen [options] -- [word]
+# exsample:
+#   compgen -W "one tow" --
+#   compgen -c -- man
+# -W  Word list.
+# -c  Listup of command, executefile, directory.
+# -f  Listup of files.
+# -d  Listup of directory.
+
+
+_test () {
+  # COMPREPLY=(one two three);
+
+  local cur prev cword
+  _get_comp_words_by_ref -n : cur prev cword
+  echo
+  echo cur: ${cur}
+  echo prev: ${prev}
+  echo cword: ${cword}
+
+}
+
+# pathコマンドを_test()でTab補完
+# complete -F _test path
+
+_path () {
+  _get_comp_words_by_ref -n : cur prev
+  local opts=$(ls ~/xvar/path/line/)
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") );
+}
+
+complete -F _path path
+

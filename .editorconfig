@@ -1,0 +1,21 @@
+# これ以上上のディレクトリを検索しない
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+# ファイル末尾の空行の有無
+insert_final_newline = true
+# 行末の空白の削除
+trim_trailing_whitespace = true
+
+# Web
+[*.{js,py,rb,htm,html,css}]
+indent_style = space
+indent_size = 2
+
+[*.cs]
+indent_style = tab
+indent_size = 4

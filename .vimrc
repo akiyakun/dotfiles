@@ -11,10 +11,12 @@ set fileencodings=utf-8,cp932,euc-jp
 scriptencoding utf-8
 set bomb
 
-set runtimepath+=$HOME/.vim,$HOME/.vim/after
+" set runtimepath+=$HOME/.vim,$HOME/.vim/after
+set runtimepath+=$HOME/.vim
 
 "------------------------------------------------
 " dein.vim
+
 let s:dein_dir = expand('~/.vim/dein/repos/github.com/Shougo/dein.vim')
 let s:dein_plugin_dir = expand('~/.vim/dein/plugin')
 

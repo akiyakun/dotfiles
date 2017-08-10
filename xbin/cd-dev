@@ -1,7 +1,0 @@
-#!/bin/sh
-# 開発用ディレクトリへ移動
-# $ . cd-dev
-# cd `dirname $0`
-cd $(cat ~/xbin/temp/dev_work_dir)
-# exec /bin/sh
-

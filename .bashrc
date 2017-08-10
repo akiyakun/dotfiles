@@ -1,32 +1,8 @@
 # .bashrc
 
 ##############################
-# Platforms
-case "$OSTYPE" in
-msys*)
-    echo "WINDOWS"
-    PLATFORM='win'
-    ;;
-darwin*)
-    echo "OSX"
-    PLATFORM='mac'
-    ;;
-linux*)
-    echo "LINUX"
-    PLATFORM='linux'
-    ;;
-*)
-    echo "unknown: $OSTYPE"
-    ;;
-esac
-
-
-##############################
 # PATH
 #export PATH=$PATH:~/xbin
-
-# xbin
-. ~/xbin/.xbinrc
 
 
 ##############################
@@ -54,7 +30,14 @@ alias dkps='docker ps -a'
 
 ##############################
 # Terminal
-export PS1="/\W $ "
+export PS1="/\W$ "
+
+# プロンプトに各種情報を表示
+# GIT_PS1_SHOWDIRTYSTATE=1
+# GIT_PS1_SHOWUPSTREAM=1
+# GIT_PS1_SHOWUNTRACKEDFILES=
+# GIT_PS1_SHOWSTASHSTATE=1kk
+# export PS1="/\W$ $(__git_ps1) "
 
 # case $TERM in
 #   linux) LANG=C ;;
@@ -64,33 +47,57 @@ export PS1="/\W $ "
 # Mac?
 export LANG=ja_JP.UTF-8
 
+# ファイル名補完の除外設定
+export FIGNORE=${FIGNORE}:.DS_Store
+export FIGNORE=${FIGNORE}:.svn:.git:.meta
+
+# completion
+if [ -f ~/.bash_completion ]; then
+  . ~/.bash_completion
+fi
+
 
 ##############################
 # win
-if [ "$PLATFORM" = "win" ]; then
-export PATH="$PATH:/usr/local/bin:/bin:/mingw64/bin:/X/opt/svn/bin:/x/usr/local/bin"
-alias ls='ls --show-control-chars'
-alias la='ls -a --show-control-chars'
-alias lal='ls -alh --show-control-chars'
-fi
-
+#if [ "$PLATFORM" = "win" ]; then
+#fi
 
 ##############################
-# mac
-if [ "$PLATFORM" = "mac" ]; then
-#export LSCOLORS=xbfxcxdxbxegedabagacad
-alias ls='ls -G'
-alias la='ls -a -G'
-alias lal='ls -alh -G'
-fi
+# Platforms
+case "$OSTYPE" in
+#-------------------
+# Windows
+msys*)
+  echo "Windows"
 
+  export PATH="$PATH:/usr/local/bin:/bin:/mingw64/bin:/X/opt/svn/bin:/x/usr/local/bin"
+  alias ls='ls --show-control-chars'
+  alias la='ls -a --show-control-chars'
+  alias lal='ls -alh --show-control-chars'
+;;
+#-------------------
+# macOS
+darwin*)
+  echo "macOS"
 
-##############################
-# linux
-if [ "$PLATFORM" = "linux" ]; then
-alias ls='ls --color=auto'
-alias la='ls -a --color=auto'
-alias lak='ls -alh --color=auto'
-fi
+  #export LSCOLORS=xbfxcxdxbxegedabagacad
+  alias ls='ls -G'
+  alias la='ls -a -G'
+  alias lal='ls -alh -G'
+;;
+#-------------------
+# Linux
+linux*)
+  echo "Linux"
+
+  alias ls='ls --color=auto'
+  alias la='ls -a --color=auto'
+  alias lak='ls -alh --color=auto'
+;;
+#-------------------
+*)
+  echo "Unknown: $OSTYPE"
+  ;;
+esac
 
 
