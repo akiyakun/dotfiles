@@ -12,7 +12,7 @@ alias la='ls -a'
 alias lal='ls -alh'
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -i'
+alias rm='rm -rf -i'
 
 # Screen
 alias screen-clean='screen -ls | grep Detached | awk "{ print $1}"| xargs -L 1 -I % screen -S % -X quit'
@@ -48,7 +48,7 @@ export PS1="/\W$ "
 export LANG=ja_JP.UTF-8
 
 # ファイル名補完の除外設定
-export FIGNORE=${FIGNORE}:.DS_Store
+export FIGNORE=${FIGNORE}:Thumbs.db:.DS_Store
 export FIGNORE=${FIGNORE}:.svn:.git:.meta
 
 # completion
@@ -58,46 +58,55 @@ fi
 
 
 ##############################
-# win
-#if [ "$PLATFORM" = "win" ]; then
-#fi
-
-##############################
-# Platforms
-case "$OSTYPE" in
-#-------------------
 # Windows
-msys*)
+_win () {
   echo "Windows"
 
   export PATH="$PATH:/usr/local/bin:/bin:/mingw64/bin:/X/opt/svn/bin:/x/usr/local/bin"
   alias ls='ls --show-control-chars'
   alias la='ls -a --show-control-chars'
   alias lal='ls -alh --show-control-chars'
-;;
-#-------------------
+}
+
+
+##############################
 # macOS
-darwin*)
+_mac () {
   echo "macOS"
 
   #export LSCOLORS=xbfxcxdxbxegedabagacad
   alias ls='ls -G'
   alias la='ls -a -G'
   alias lal='ls -alh -G'
-;;
-#-------------------
+
+}
+
+
+##############################
 # Linux
-linux*)
+_linux () {
   echo "Linux"
 
   alias ls='ls --color=auto'
   alias la='ls -a --color=auto'
   alias lak='ls -alh --color=auto'
+}
+
+
+##############################
+# Platforms
+case "$OSTYPE" in
+msys*)
+  _win
 ;;
-#-------------------
+darwin*)
+  _mac
+;;
+linux*)
+  _linux
+;;
 *)
   echo "Unknown: $OSTYPE"
   ;;
 esac
-
 

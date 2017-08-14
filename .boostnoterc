@@ -3,6 +3,7 @@
     "theme": "default"
   },
   "editor": {
+    "keyMap": "vim",
     "theme": "solarized"
   },
   "preview": {

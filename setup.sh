@@ -1,9 +1,29 @@
 #!/bin/sh
+# setup.sh
+# ./other/*_setup.sh も実行されます。
+
+# Make as symbolic link to home directory.
+_sln () {
+  if [ -f $1 ] ; then
+    ln -shf $1 $2
+    return 0
+  else
+    return 1
+  fi
+}
 
 # Make as symbolic link to home directory.
 _sln_home () {
-  ln -shf $PWD/$1 ~/$1
+  _sln $PWD/$1 ~/$1
 }
+
+# Execute shell script.
+_do () {
+  if [ -f $1 ] ; then
+    sh $1
+  fi
+}
+
 
 ########################################
 # Terminal dotfiles
@@ -12,7 +32,6 @@ _sln_home .bashrc
 _sln_home .bash_completion
 _sln_home .inputrc
 _sln_home .screenrc
-
 
 ########################################
 # Editor
@@ -24,42 +43,38 @@ _sln_home .boostnoterc
 
 
 ########################################
+# 一度bashの設定ファイルを読み込む
+. ~/.bash_profile
+#. ~/.bashrc
+
+
+########################################
 # xbin
 # 先に元ファイルの権限を設定後シンボリックリンクを作成
 _setup_xbin () {
-  echo setup xbin
+  echo xbin
   SRC=$PWD/xbin
   chmod -R -v a+rx $SRC
-  ln -shf $SRC ~/xbin
+  _sln $SRC ~/xbin
 
   echo xetc
   SRC=$PWD/xetc
-
-  # 外部の設定ファイルをDownload & Update
-  # completions
-  TMP=$SRC/completions
-  curl -o $TMP/git-completion.bash \
-    "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash"
-  curl -o $TMP/git-prompt.sh \
-    "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh"
-
   chmod -R -v a+rwx $SRC
-  ln -shf $SRC ~/xetc
-
+  _sln $SRC ~/xetc
 
   echo xvar
-  # MEMO: xvarっている？
   SRC=$PWD/xvar
-  chmod -R -v a+rw $SRC
-  ln -shf $SRC ~/xvar
+  chmod -R -v a+rwx $SRC
+  _ln $SRC ~/xvar
 
 }
 
 _setup_xbin
 
+
 ########################################
-# Unity
-ln -shf /Applications/Unity/Unity.app/Contents/Tools/UnityYAMLMerge ~/xbin/UnityYAMLMerge
-
-
+# Setup Others
+_do ./other/git_setup.sh
+_do ./other/vim_setup.sh
+_do ./other/unity_setup.sh
 

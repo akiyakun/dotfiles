@@ -94,7 +94,7 @@ set autochdir                           " カレントディレクトリを開�
 "------------------------------------------------
 " 一般
 set history=50                          " コマンド、検索パターンの履歴保存数
-"set t_Co=256                            " 256色化
+" set t_Co=256                            " 256色化
 set t_Co=16                            " 16色化
 set nowrap                              " テキストの折り返しはしない
 set shortmess+=I                        " 起動時のメッセージを表示しない
@@ -109,7 +109,7 @@ set wrapscan                            " 検索が最後尾まで到達した�
 
 "------------------------------------------------
 " 編集
-set smarttab                            " 
+set smarttab                            "
 " set noexpandtab                         " タブをスペースに展開しない
 set expandtab							" タブをスペースにする
 set tabstop=4                           " タブ幅
@@ -125,7 +125,7 @@ if has('win32')
 endif
 set lazyredraw                          " マクロなどの途中経過を再描画しない
 set formatoptions+=mM                   " 日本語の行の連結時には空白を入力しない
-augroup CustomFileType 
+augroup CustomFileType
     autocmd!
     autocmd FileType * setlocal formatoptions-=t formatoptions+=rol
 augroup END

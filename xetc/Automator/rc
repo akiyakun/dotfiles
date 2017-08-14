@@ -1,0 +1,9 @@
+#!/bin/sh
+# Automator用run command
+
+# xbin
+export XBIN=~/xbin
+export XETC=~/xetc
+export XVAR=~/xvar
+export XTEMP=$XVAR/temp
+export PATH=$PATH:$XBIN:$XETC:$XVAR:$XTEMP

@@ -1,9 +1,9 @@
 # .screenrc
 
-bind v eval 'echo v0.28'
+bind v eval 'echo v0.29'
 
 #################################################
-# 
+#
 
 # Encoding
 defkanji utf8               # 古いScreen用のettei
@@ -89,7 +89,7 @@ bind -c cmd02 G eval 'select 1' 'split -v' 'focus next' 'select 2' 'split -h' 'f
 
 #################################################
 # UnderBar
-# 1. シンプルにウィンドウ名を表示 
+# 1. シンプルにウィンドウ名を表示
   # caption always "%{= wk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wb}%y/%m/%d(%D) %{=b wb}%c"
 # 2. カレントを赤色、それ以外を青色にする
   # Under Bar Style
