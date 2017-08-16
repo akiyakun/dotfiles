@@ -1,4 +1,5 @@
 # .bashrc
+# Ver 1.02
 
 ##############################
 # PATH
@@ -22,6 +23,13 @@ alias vi='vim'
 
 # git
 alias gs='git status -s'
+alias gb='git branch'
+# カレントブランチ名を取得
+alias gbc='git symbolic-ref --short HEAD'
+# カレントブランチをpush
+function gpush () {
+  command git push $1 "$(gbc):$(gbc)"
+}
 
 # docker
 alias dk='docker'
@@ -39,6 +47,9 @@ export PS1="/\W$ "
 # GIT_PS1_SHOWSTASHSTATE=1kk
 # export PS1="/\W$ $(__git_ps1) "
 
+echo $TERM
+#xterm
+#screen
 # case $TERM in
 #   linux) LANG=C ;;
 #   *) LANG=ja_JP.UTF-8 ;;
@@ -87,9 +98,38 @@ _mac () {
 _linux () {
   echo "Linux"
 
+  # termux
+  export PATH="$PATH:$HOME/bin"
+
+  # push前にlfsに明示的にpushを追加
+  function gpush () {
+    echo "lfs push"
+    git lfs push $1 $(gbc)
+    command git push $1 "$(gbc):$(gbc)"
+  }
+
+  # go
+  export GOPATH="$HOME/go"
+  #export GOROOT="$HOME/go"
+  #export PATH="$PATH:/data/data/com.termux/files/usr/bin"
+  #export GOPATH="/data/data/com.termux/files/usr/lib/go"
+  #export GOROOT="/sdcard1/Android/media/com.termux/dev/git-lfs"
+  export GOROOT="/data/data/com.termux/files/usr/lib/go"
+  export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
+  alias cddev='cd /sdcard1/Android/media/com.termux/dev/'
+  alias ssh-agent='eval `command ssh-agent`'
+
   alias ls='ls --color=auto'
   alias la='ls -a --color=auto'
   alias lak='ls -alh --color=auto'
+
+
+  # nvm
+  #export NVM_DIR="$HOME/.nvm"
+  #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 }
 
 

@@ -1,6 +1,6 @@
 # .screenrc
 
-bind v eval 'echo v0.29'
+bind v eval 'echo v0.30'
 
 #################################################
 #
@@ -13,6 +13,7 @@ encoding utf8 utf8
 
 startup_message off         # 起動時のメッセージを非表示
 autodetach on               # ターミナルが落ちたら自動的にデタッチ
+#autodetach off 
 vbell off                   # ベルをオフ
 defscrollback 3000          # スクロールバッファ
 # altscreen on

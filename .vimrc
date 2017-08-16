@@ -1,4 +1,5 @@
 " .vimrc
+" Ver 1.02
 
 if &compatible
   set nocompatible
@@ -14,15 +15,18 @@ set bomb
 " set runtimepath+=$HOME/.vim,$HOME/.vim/after
 set runtimepath+=$HOME/.vim
 
+"set t_Co=256        " 256色化
+set t_Co=16         " 16色化
+
+
 "------------------------------------------------
 " dein.vim
-
 let s:dein_dir = expand('~/.vim/dein/repos/github.com/Shougo/dein.vim')
-let s:dein_plugin_dir = expand('~/.vim/dein/plugin')
+if filereadable(s:dein_dir )
 
+let s:dein_plugin_dir = expand('~/.vim/dein/plugin')
 "set runtimepath+=s:dein_dir
 execute 'set runtimepath^=' . s:dein_dir
-
 "let g:vim_jsx_pretty_enable_jsx_highlight = 0
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
@@ -63,6 +67,8 @@ filetype plugin indent on
 
 "----------------------------
 " ColorsShemeの設定
+set t_Co=16         " 16色化
+
 let g:solarized_contrast="high"
 "let g:solarized_visibility="high"
 let g:solarized_termcolors=16
@@ -74,6 +80,8 @@ colorscheme solarized
 " 対応する括弧が視認し難いのでカラーを上書き
 hi MatchParen ctermfg=160 ctermbg=238
 " hi MatchParen guifg=blue guibg=blue
+
+endif   " dein
 
 
 "------------------------------------------------
@@ -94,8 +102,6 @@ set autochdir                           " カレントディレクトリを開�
 "------------------------------------------------
 " 一般
 set history=50                          " コマンド、検索パターンの履歴保存数
-" set t_Co=256                            " 256色化
-set t_Co=16                            " 16色化
 set nowrap                              " テキストの折り返しはしない
 set shortmess+=I                        " 起動時のメッセージを表示しない
 set visualbell t_vb=                    " ビープ音もフラッシュもしない
@@ -191,6 +197,14 @@ set mousehide                           " 入力時にマウスポインタを�
 set timeout timeoutlen=1000 ttimeoutlen=50
 
 "----------------------------
+" Normal & Visual
+"noremap
+
+"----------------------------
+" Command & Insert
+" noremap!
+
+"----------------------------
 " Normal Mode
 " カーソル位置から行末までコピー
 nnoremap Y y$
@@ -276,6 +290,7 @@ endif
 
 "------------------------------------------------
 " unix
+" macOX, Z2
 " let a1 = confirm(system("uname"), "y")
 " let a1 = confirm($TERM, "y")
 if has('unix')
@@ -289,6 +304,73 @@ if $TERM == 'screen'
     " call s:Func("hoge")
     "call CLI_CommonSettings()
 endif
+
+
+"------------------------------------------------
+" iPad Pro 用
+if system("uname -m") =~? '^arm*'
+  "echo system("uname -m")
+
+  "----------------------------
+  " 2
+  map  " <S-@>
+  map! " <S-@>
+  " 6
+  map  & <S-^>
+  map! & <S-^>
+  " 7
+  map  ' <S-&>
+  map! ' <S-&>
+  " 8
+  map  ( <S-*>
+  map! ( <S-*>
+  " 9
+  map  ) <S-(><S-)>
+  map! ) <S-(><S-)>
+
+  " 0
+  "map  <S-0> <S-)>
+  "map! <s-0> <S-)>
+  " -
+  map  = <S-_>
+  map! = <S-_>
+  " ^
+  map  ^ <S-=>
+  map! ^ <S-=>
+  map  ~ <S-+>
+  map! ~ <S-+>
+
+  " @
+  map  @ <S-[>
+  map! @ <S-[>
+  map  ` <S-{>
+  map! ` <S-{>
+  " [
+  map  [ <S-]>
+  map! [ <S-]>
+  map  { <S-}>
+  map! { <S-}>
+
+  " れ
+  map  + <S-:>
+  map! + <S-:>
+  " け
+  map  : <S-'>
+  map! : <S-'>
+  map  * <S-">
+  map! * <S-">
+  " む
+  "map  ] <LF>
+  "map! ] <LF>
+
+  " ろ
+  "map _ <S>
+
+endif
+
+"echo system("uname -a")
+"echo system("uname -m")
+"echo $TERM
 
 
 "------------------------------------------------
