@@ -5,7 +5,7 @@
 # Make as symbolic link to home directory.
 _sln () {
   if [ -f $1 ] ; then
-    ln -shf $1 $2
+    ln -sf $1 $2
     return 0
   else
     return 1
