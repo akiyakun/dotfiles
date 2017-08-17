@@ -1,10 +1,12 @@
 # .bash_profile
+# Ver 1.01
 
 ##############################
 # path
 export PATH=$PATH:/usr/local/bin
 
 # Platforms
+echo $OSTYPE
 case "$OSTYPE" in
 msys*) # win
   APPDIR=C:/Program Files
@@ -14,6 +16,8 @@ darwin*) # mac
   APPDIR=/Applications
 ;;
 linux*) # linux
+  # とりあえずHomeに設定
+  APPDIR=~/
 ;;
 esac
 
@@ -35,9 +39,17 @@ export IGNOREEOF
 
 ##############################
 # Load bash-completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+case "$OSTYPE" in
+msys*) # win
+;;
+darwin*) # mac
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+;;
+linux*) # linux
+;;
+esac
 
 
 ##############################

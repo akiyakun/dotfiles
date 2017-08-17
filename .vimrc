@@ -1,5 +1,5 @@
 " .vimrc
-" Ver 1.02
+" Ver 1.03
 
 if &compatible
   set nocompatible
@@ -308,7 +308,7 @@ endif
 
 "------------------------------------------------
 " iPad Pro 用
-if system("uname -m") =~? '^arm*'
+if system("uname -m") =~? '^armHOGEHOGE*'
   "echo system("uname -m")
 
   "----------------------------

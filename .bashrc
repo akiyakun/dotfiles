@@ -27,7 +27,7 @@ alias gb='git branch'
 # カレントブランチ名を取得
 alias gbc='git symbolic-ref --short HEAD'
 # カレントブランチをpush
-function gpush () {
+gpush () {
   command git push $1 "$(gbc):$(gbc)"
 }
 
@@ -67,7 +67,6 @@ if [ -f ~/.bash_completion ]; then
   . ~/.bash_completion
 fi
 
-
 ##############################
 # Windows
 _win () {
@@ -101,8 +100,11 @@ _linux () {
   # termux
   export PATH="$PATH:$HOME/bin"
 
+  alias su=''
+  alias sudo=''
+
   # push前にlfsに明示的にpushを追加
-  function gpush () {
+  gpush () {
     echo "lfs push"
     git lfs push $1 $(gbc)
     command git push $1 "$(gbc):$(gbc)"
