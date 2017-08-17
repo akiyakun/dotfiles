@@ -1,5 +1,5 @@
 #!/bin/sh
-# setup.sh v1.03
+# setup.sh v1.04
 # ./other/*_setup.sh も実行されます。
 
 # Make as symbolic link to home directory.
@@ -92,6 +92,7 @@ _sln_home .bash_completion
 
 ########################################
 # Setup Others
+_do ./other/completion_setup.sh
 _do ./other/git_setup.sh
 _do ./other/vim_setup.sh
 _do ./other/unity_setup.sh
