@@ -1,5 +1,6 @@
 #!/bin/sh
 # unity_setup.sh
+# v1.01
 
 _win () {
   local unity=Unity/Editor/Data/Tools
@@ -33,8 +34,5 @@ darwin*)
 linux*)
   _linux
 ;;
-*)
-  echo "Unknown: $OSTYPE"
-  ;;
 esac
 

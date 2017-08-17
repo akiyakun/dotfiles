@@ -186,6 +186,14 @@ set mousehide                           " 入力時にマウスポインタを�
 
 
 "------------------------------------------------
+" 最後に開いた時カーソルがあった場所に移動
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
+
+"------------------------------------------------
 " key remap
 " Insert Modeで<Esc>にマッピングしてkenaiはいけない
 

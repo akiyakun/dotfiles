@@ -1,9 +1,13 @@
 
 DIR=~/xetc/completions
 
-. ${DIR}/path
+_load_comp () {
+  if [ -f ${DIR}/$1 ]; then
+    . ${DIR}/$1
+  fi
+}
 
-. ${DIR}/git-completion.bash
-. ${DIR}/git-prompt.sh
+_load_comp path
+_load_comp git-completion.bash
 
 

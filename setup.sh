@@ -54,27 +54,28 @@ _sln_home .boostnoterc
 
 
 ########################################
-# 一度bashの設定ファイルを読み込む
-. ~/.bash_profile
+# 一度環境設定ファイルを読み込む
+# . ~/.bash_profile "--no-bashrc"
+sh ~/.bash_profile --no-bashrc
 
 
 ########################################
 # xbin
 # 先に元ファイルの権限を設定後シンボリックリンクを作成
 _setup_xbin () {
-  echo xbin
+  echo xbin setup...
   SRC=$PWD/xbin
   chmod -R a+rx $SRC
   rm -f ~/xbin
   _sln $SRC ~/xbin
 
-  echo xetc
+  echo xetc setup...
   SRC=$PWD/xetc
   chmod -R a+rwx $SRC
   rm -f ~/xetc
   _sln $SRC ~/xetc
 
-  echo xvar
+  echo xvar setup...
   SRC=$PWD/xvar
   chmod -R a+rwx $SRC
   rm -f ~/xvar

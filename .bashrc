@@ -1,5 +1,5 @@
 # .bashrc
-# Ver 1.02
+# Ver 1.03
 
 ##############################
 # PATH
@@ -47,6 +47,13 @@ export PS1="/\W$ "
 # GIT_PS1_SHOWSTASHSTATE=1kk
 # export PS1="/\W$ $(__git_ps1) "
 
+
+##############################
+# 2回Ctrl+Dを無視する
+IGNOREEOF=2
+export IGNOREEOF
+
+
 echo $TERM
 #xterm
 #screen
@@ -62,10 +69,25 @@ export LANG=ja_JP.UTF-8
 export FIGNORE=${FIGNORE}:Thumbs.db:.DS_Store
 export FIGNORE=${FIGNORE}:.svn:.git:.meta
 
+
+##############################
 # completion
+case "$OSTYPE" in
+msys*) # win
+;;
+darwin*) # mac
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+;;
+linux*) # linux
+;;
+esac
+
 if [ -f ~/.bash_completion ]; then
   . ~/.bash_completion
 fi
+
 
 ##############################
 # Windows

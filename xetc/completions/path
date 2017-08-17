@@ -1,4 +1,5 @@
 #!/bin/sh
+# v1.00
 
 # 補完リスト
 # COMPREPLY
@@ -25,7 +26,6 @@ _test () {
 
   local cur prev cword
   _get_comp_words_by_ref -n : cur prev cword
-  echo
   echo cur: ${cur}
   echo prev: ${prev}
   echo cword: ${cword}
@@ -34,12 +34,21 @@ _test () {
 
 # pathコマンドを_test()でTab補完
 # complete -F _test path
+_path_complete () {
+  echo hoge0
 
-_path () {
-  _get_comp_words_by_ref -n : cur prev
-  local opts=$(ls ~/xvar/path/line/)
-  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") );
+#  _get_comp_words_by_ref -n : cur prev
+
+  echo hoge1
+
+#  local opts=$(ls ~/xvar/path/line/)
+
+  echo hoge3
+
+#  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") );
+
 }
 
-complete -F _path path
+echo hoge2
+#complete -F _path_complete path
 

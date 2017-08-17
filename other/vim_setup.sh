@@ -1,6 +1,11 @@
 #!/bin/sh
 # vim_setup.sh
+# v1.01
 
-# _do ./other/vim/dein_setup.sh
+if [ ! -d ~/.vim ] ; then
+  mkdir ~/.vim
+fi
+
 sh ./other/vim/dein_setup.sh
+
 

@@ -1,5 +1,6 @@
+#!/bin/sh
 # .bash_profile
-# Ver 1.01
+# Ver 1.03
 
 ##############################
 # path
@@ -32,29 +33,11 @@ export PATH=$PATH:$XBIN:$XETC:$XVAR:$XTEMP
 
 
 ##############################
-# 2回Ctrl+Dを無視する
-IGNOREEOF=2
-export IGNOREEOF
-
-
-##############################
-# Load bash-completion
-case "$OSTYPE" in
-msys*) # win
-;;
-darwin*) # mac
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-  fi
-;;
-linux*) # linux
-;;
-esac
-
-
-##############################
 # Load .bashrc
-if [ -f ~/.bashrc ] ; then
-  . ~/.bashrc
+if [ $1 != "--no-bashrc" ]; then
+  if [ -f ~/.bashrc ]; then
+    echo "Load .bashrc"
+    . ~/.bashrc
+  fi
 fi
 
