@@ -65,16 +65,19 @@ _setup_xbin () {
   echo xbin
   SRC=$PWD/xbin
   chmod -R a+rx $SRC
+  rm -f ~/xbin
   _sln $SRC ~/xbin
 
   echo xetc
   SRC=$PWD/xetc
   chmod -R a+rwx $SRC
+  rm -f ~/xetc
   _sln $SRC ~/xetc
 
   echo xvar
   SRC=$PWD/xvar
   chmod -R a+rwx $SRC
+  rm -f ~/xvar
   _sln $SRC ~/xvar
 
 }

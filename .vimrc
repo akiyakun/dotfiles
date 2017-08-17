@@ -1,5 +1,5 @@
 " .vimrc
-" Ver 1.03
+" Ver 1.04
 
 if &compatible
   set nocompatible
@@ -22,7 +22,7 @@ set t_Co=16         " 16色化
 "------------------------------------------------
 " dein.vim
 let s:dein_dir = expand('~/.vim/dein/repos/github.com/Shougo/dein.vim')
-if filereadable(s:dein_dir )
+if isdirectory(s:dein_dir)
 
 let s:dein_plugin_dir = expand('~/.vim/dein/plugin')
 "set runtimepath+=s:dein_dir
