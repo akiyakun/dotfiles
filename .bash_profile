@@ -34,7 +34,8 @@ export PATH=$PATH:$XBIN:$XETC:$XVAR:$XTEMP
 
 ##############################
 # Load .bashrc
-if [ $1 != "--no-bashrc" ]; then
+# if [ $1 != "--no-bashrc" ]; then
+if [ $# -eq 1 ]; then
   if [ -f ~/.bashrc ]; then
     echo "Load .bashrc"
     . ~/.bashrc

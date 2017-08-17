@@ -5,6 +5,9 @@
 # PATH
 #export PATH=$PATH:~/xbin
 
+# yarn
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin/"
+export PATH="$PATH:`yarn global bin`"
 
 ##############################
 # Alias
