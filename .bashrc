@@ -1,13 +1,13 @@
 # .bashrc
-# Ver 1.03
+# Ver 1.04
 
 ##############################
 # PATH
 #export PATH=$PATH:~/xbin
 
 # yarn
-export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin/"
-export PATH="$PATH:`yarn global bin`"
+# export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin/"
+# export PATH="$PATH:`yarn global bin`"
 
 ##############################
 # Alias
