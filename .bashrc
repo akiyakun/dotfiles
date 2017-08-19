@@ -122,8 +122,17 @@ _mac () {
 _linux () {
   echo "Linux"
 
+  # ssh
+  alias ssh-agent='eval `command ssh-agent`'
+  # > known_hosts
+  ssh-agent
+  ssh-add ~/.ssh/id_akiya_rsa
+
+
   # termux
   export PATH="$PATH:$HOME/bin"
+  # export PATH="$PATH:/data/data/com.termux/files/usr/bin"
+  # export PATH="$PATH:/data/data/com.termux/files/home/.npm"
 
   alias su=''
   alias sudo=''
@@ -145,7 +154,6 @@ _linux () {
   export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
   alias cddev='cd /sdcard1/Android/media/com.termux/dev/'
-  alias ssh-agent='eval `command ssh-agent`'
 
   alias ls='ls --color=auto'
   alias la='ls -a --color=auto'
