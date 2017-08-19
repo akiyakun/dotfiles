@@ -13,7 +13,7 @@ encoding utf8 utf8
 
 startup_message off         # 起動時のメッセージを非表示
 autodetach on               # ターミナルが落ちたら自動的にデタッチ
-#autodetach off 
+#autodetach off
 vbell off                   # ベルをオフ
 defscrollback 3000          # スクロールバッファ
 # altscreen on
@@ -42,6 +42,7 @@ bind r eval 'source ~/.screenrc' 'echo "reloaded .screenrc"'
 # 封印
 bind x eval 'echo ignre'
 # bind c command
+# bind d command 'detach'
 
 
 #################################################

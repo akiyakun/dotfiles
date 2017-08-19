@@ -1,5 +1,5 @@
 #!/bin/sh
-# v1.00
+# v1.01
 
 # 補完リスト
 # COMPREPLY
@@ -35,20 +35,10 @@ _test () {
 # pathコマンドを_test()でTab補完
 # complete -F _test path
 _path_complete () {
-  echo hoge0
-
-#  _get_comp_words_by_ref -n : cur prev
-
-  echo hoge1
-
-#  local opts=$(ls ~/xvar/path/line/)
-
-  echo hoge3
-
-#  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") );
-
+  _get_comp_words_by_ref -n : cur prev
+  local opts=$(ls ${XVAR}/path/line/)
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") );
 }
 
-echo hoge2
-#complete -F _path_complete path
+complete -F _path_complete path
 
